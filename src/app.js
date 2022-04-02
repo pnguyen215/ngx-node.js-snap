@@ -91,6 +91,9 @@ class App {
 
         let forksRoutes = require('./routes/forks-routes');
         app.use('/api/v1/forks', forksRoutes);
+
+        let sysRoutes = require('./routes/sys-files-routes');
+        app.use('/api/v1/sys-files', sysRoutes);
     }
     // end::Config global routes
 

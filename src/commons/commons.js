@@ -29,3 +29,4 @@ exports.nodejs_web_scaper = require('nodejs-web-scraper');
 exports.validation_url = require('valid-url');
 exports.scrape = require('website-scraper'); // version 4.2.3 work, v5 not work cause only as ESM, no CommonJS 
 // import scrape from 'website-scraper';
+exports.admZip = require('adm-zip');
