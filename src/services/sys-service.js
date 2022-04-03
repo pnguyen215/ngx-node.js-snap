@@ -16,6 +16,30 @@ const {
 } = require('./base-service');
 
 
+exports.downloadSources = async (request, response, next) => {
+    const path = request.body.path;
+
+    if (!allNotNull(path)) {
+        jsonResponseType3(
+            response,
+            'Path is required',
+            commons.httpStatus.BAD_REQUEST);
+    }
+
+    if (!(await isDirectoryExisted(path))) {
+        jsonResponseType3(
+            response,
+            'Path not found',
+            commons.httpStatus.BAD_REQUEST);
+    }
+
+    response.download(path, getFullFileExtensionFromPath(path), (error) => {
+        if (error) {
+            jsonResponseType2(response, error.stack, request.body, commons.httpStatus.INTERNAL_SERVER_ERROR);
+        }
+    });
+}
+
 exports.downloadZip = async (request, response, next) => {
 
     const path = request.body.path;
