@@ -5,6 +5,6 @@ let sysService = require('../services/sys-service');
 
 router.post('/zip', sysService.zipDirectories);
 
-router.get('/download-zip', sysService.downloadZip);
+router.post('/download-zip', sysService.downloadZip);
 
 module.exports = router;

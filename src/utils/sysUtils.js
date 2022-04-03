@@ -56,9 +56,65 @@ async function isDirectoriesExisted(...paths) {
     paths.forEach(path => isDirectoryExisted(path));
 }
 
+async function isEndWith(pathName, extension) {
+
+    if (!allNotNull(pathName, extension)) {
+        return false;
+    }
+
+    extension = trimAsWhitespace(extension).toLowerCase();
+    const lastPart = commons.paths.extname(pathName).toLowerCase();
+    return lastPart.includes(extension);
+}
+
+/**
+ * @param pathName - 
+ * @arg 'D://var//new2//_01.zip' to 'D://var//new2//'
+ * */
+function removeFileExtensionFromPath(pathName) {
+
+    if (!allNotNull(pathName)) {
+        return pathName;
+    }
+
+    return pathName.replace(/^\.*\/|\/?[^\/]+\.[a-z]+|\/$/g, '');
+}
+
+function getFullFileExtensionFromPath(pathName) {
+
+    if (!allNotNull(pathName)) {
+        return pathName;
+    }
+
+    return commons.paths.basename(pathName); // or use: commons.paths.parse(pathName).base
+}
+
+function getFileNameFromPath(pathName) {
+
+    if (!allNotNull(pathName)) {
+        return pathName;
+    }
+
+    return commons.paths.parse(pathName).name;
+}
+
+function getExtensionFromPath(pathName) {
+
+    if (!allNotNull(pathName)) {
+        return pathName;
+    }
+
+    return commons.paths.parse(pathName).ext;
+}
+
 module.exports = {
     createDirectories,
     removeDirectories,
     isDirectoryExisted,
-    isDirectoriesExisted
+    isDirectoriesExisted,
+    isEndWith,
+    removeFileExtensionFromPath,
+    getFullFileExtensionFromPath,
+    getFileNameFromPath,
+    getExtensionFromPath
 }
