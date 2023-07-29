@@ -12,19 +12,19 @@ exports.writeHttpRequestTails = (request, response, next) => {
     // begin::Declare path to save file log request
     const path = './logs/http_request.log';
 
-    let current_datetime = new Date();
+    let current_date = new Date();
     let formatted_date =
-        current_datetime.getFullYear() +
+        current_date.getFullYear() +
         "-" +
-        (current_datetime.getMonth() + 1) +
+        (current_date.getMonth() + 1) +
         "-" +
-        current_datetime.getDate() +
+        current_date.getDate() +
         " " +
-        current_datetime.getHours() +
+        current_date.getHours() +
         ":" +
-        current_datetime.getMinutes() +
+        current_date.getMinutes() +
         ":" +
-        current_datetime.getSeconds();
+        current_date.getSeconds();
 
     // begin::List attributes http    
     let method = request.method;
